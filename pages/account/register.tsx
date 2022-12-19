@@ -37,10 +37,10 @@ function Register() {
         router.push('login')
       })
       .catch(() => {
-        alertService.error('Registration failed')
+        alertService.error
       })
   }
-
+  
   return (
     <Layout>
       <div className="card">
