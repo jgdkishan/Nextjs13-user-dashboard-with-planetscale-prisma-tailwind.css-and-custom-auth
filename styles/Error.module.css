@@ -1,0 +1,68 @@
+.errorPage {
+    position: relative;
+    height: 100vh
+}
+
+.errorMessageContainer {
+    max-width: 560px;
+    width: 100%;
+    padding-left: 160px;
+    line-height: 1.1;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%)
+}
+
+.errorMessageContainer .errorImage {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    background-image: url(https://gv-prod-storage.s3-us-west-2.amazonaws.com/images/GV_Email_Logo.png);
+    background-size: cover
+}
+
+.errorMessageContainer h1 {
+    font-size: 65px;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.errorMessageContainer h2 {
+    font-size: 21px;
+    font-weight: 400;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.errorMessageContainer p {
+    color: #999fa5;
+    font-weight: 400
+}
+
+.errorMessageContainer a {
+    display: inline-block;
+    font-weight: 700;
+    border-radius: 40px;
+    text-decoration: none;
+    color: #388dbc
+}
+
+@media only screen and (max-width:767px) {
+    .errorMessageContainer {
+        width: 110px;
+        height: 110px
+    }
+
+    .errorMessageContainer {
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 110px
+    }
+}
