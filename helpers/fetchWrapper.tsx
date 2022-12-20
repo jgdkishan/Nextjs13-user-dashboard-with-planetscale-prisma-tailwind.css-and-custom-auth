@@ -1,5 +1,4 @@
 import getConfig from 'next/config'
-
 import { userService } from '../services'
 
 const { publicRuntimeConfig } = getConfig()
@@ -23,7 +22,7 @@ function post(url: string, body: Object) {
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', ...authHeader(url) },
-    // credentials: 'include',
+    credentials: 'include' as RequestCredentials,
     body: JSON.stringify(body)
   }
   return fetch(url, requestOptions).then(handleResponse)

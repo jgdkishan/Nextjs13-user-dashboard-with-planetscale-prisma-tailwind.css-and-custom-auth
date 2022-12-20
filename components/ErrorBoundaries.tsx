@@ -1,4 +1,4 @@
-import { Component, ErrorInfo, ReactNode } from 'react'
+import { Component, ErrorInfo } from 'react'
 import styles from '../styles/Error.module.css'
 import { Props, State } from '../types'
 

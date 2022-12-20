@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+
 export interface Props {
   children?: ReactNode
 }
@@ -8,14 +9,13 @@ export interface State {
 }
 
 export interface LoginInputs {
-  username: string
+  email: string
   password: string
 }
 
 export interface SignUpData {
-  firstName: string
-  lastName: string
-  username: string
+  name: string
+  email: string
   password: string
 }
 

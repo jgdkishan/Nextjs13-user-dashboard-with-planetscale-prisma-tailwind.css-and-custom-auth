@@ -11,7 +11,7 @@ export default function Custom404() {
           Sorry but the page you are looking for does not exist, have been
           removed. name changed or is temporarily unavailable
         </p>
-        <a href={process.env.NEXT_PUBLIC_GV_APP_URL}>Back to homepage</a>
+        <a href={'/'}>Back to homepage</a>
       </div>
     </div>
   )

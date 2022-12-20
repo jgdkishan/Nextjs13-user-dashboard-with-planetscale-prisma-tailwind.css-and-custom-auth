@@ -17,13 +17,10 @@
 }
 
 .errorMessageContainer .errorImage {
-    position: absolute;
-    left: 0;
-    top: 0;
-    display: inline-block;
-    width: 150px;
-    height: 150px;
-    background-image: url(https://gv-prod-storage.s3-us-west-2.amazonaws.com/images/GV_Email_Logo.png);
+    width: 350px;
+    height: 350px;
+    z-index: -2;
+    background-image: url(/error.png);
     background-size: cover
 }
 

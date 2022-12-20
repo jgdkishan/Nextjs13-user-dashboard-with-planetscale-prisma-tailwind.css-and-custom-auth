@@ -3,23 +3,23 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as Yup from 'yup'
 import { SignUpData } from '../../types'
-import { Link } from '../../components/Link'
-import { Layout } from '../../components/account/Layout'
+import NextLink from 'next/link'
+import Layout from '../../components/layouts/Auth'
+import SingleSignOns from '../../components/account/SingleSignOns'
 import { userService, alertService } from '../../services'
 
-export default Register
-
-function Register() {
+export default function Register() {
   const router = useRouter()
 
   // form validation rules
   const validationSchema = Yup.object().shape({
-    firstName: Yup.string().required('First Name is required'),
-    lastName: Yup.string().required('Last Name is required'),
-    username: Yup.string().required('Username is required'),
+    name: Yup.string().required('Name is required'),
+    email: Yup.string()
+      .required('Email adress is required')
+      .email('Please provide proper email address'),
     password: Yup.string()
       .required('Password is required')
-      .min(6, 'Password must be at least 6 characters')
+      .min(8, 'Password must be at least 8 characters')
   })
   const formOptions = { resolver: yupResolver(validationSchema) }
 
@@ -40,70 +40,113 @@ function Register() {
         alertService.error
       })
   }
-  
   return (
     <Layout>
-      <div className="card">
-        <h4 className="card-header">Register</h4>
-        <div className="card-body">
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="form-group">
-              <label>First Name</label>
-              <input
-                type="text"
-                {...register('firstName')}
-                className={`form-control ${
-                  errors.firstName ? 'is-invalid' : ''
-                }`}
-              />
-              <div className="invalid-feedback">
-                {`${errors.firstName?.message}`}
+      <div className="container mx-auto px-4 h-full">
+        <div className="flex content-center items-center justify-center h-full">
+          <div className="w-full lg:w-6/12 px-4">
+            <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200 border-0">
+              <SingleSignOns />
+              <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
+                <div className="text-blueGray-400 text-center mb-3 font-bold">
+                  <small>Or sign up with credentials</small>
+                </div>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                  <div className="relative w-full mb-3">
+                    <label
+                      className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="grid-password"
+                    >
+                      Name
+                    </label>
+                    <input
+                      type="text"
+                      {...register('name')}
+                      // className={`form-control ${errors.name ? 'is-invalid' : ''}`}
+                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      placeholder="Name"
+                    />
+                    <div className="text-sm font-light text-blueGray-400">{`${
+                      errors.name?.message || ''
+                    }`}</div>
+                  </div>
+
+                  <div className="relative w-full mb-3">
+                    <label
+                      className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="grid-password"
+                    >
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      {...register('email')}
+                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      placeholder="Email"
+                    />
+                    <div className="text-sm font-light text-blueGray-400">{`${
+                      errors.email?.message || ''
+                    }`}</div>
+                  </div>
+
+                  <div className="relative w-full mb-3">
+                    <label
+                      className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="grid-password"
+                    >
+                      Password
+                    </label>
+                    <input
+                      type="password"
+                      {...register('password')}
+                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      placeholder="Password"
+                    />
+                    <div className="text-sm font-light text-blueGray-400">{`${
+                      errors.password?.message || ''
+                    }`}</div>
+                  </div>
+
+                  <div>
+                    <label className="inline-flex items-center cursor-pointer">
+                      <input
+                        id="customCheckLogin"
+                        type="checkbox"
+                        className="form-checkbox border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
+                      />
+                      <span className="ml-2 text-sm font-semibold text-blueGray-600">
+                        I agree with the{' '}
+                        <a
+                          href="#pablo"
+                          className="text-sky-500"
+                          onClick={(e) => e.preventDefault()}
+                        >
+                          Privacy Policy
+                        </a>
+                      </span>
+                    </label>
+                  </div>
+
+                  <div className="text-center mt-6">
+                    <button
+                      className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                      type="button"
+                    >
+                      Register
+                    </button>
+                  </div>
+                </form>
               </div>
             </div>
-            <div className="form-group">
-              <label>Last Name</label>
-              <input
-                type="text"
-                {...register('lastName')}
-                className={`form-control ${
-                  errors.lastName ? 'is-invalid' : ''
-                }`}
-              />
-              <div className="invalid-feedback">{`${errors.lastName?.message}`}</div>
+            <div className="flex flex-wrap mt-6 relative justify-center">
+              <div className="text-center">
+                <small>Already have an account? </small>
+                <NextLink href="/account/login" className="text-sky-400">
+                  <small>Login Here</small>
+                </NextLink>
+              </div>
             </div>
-            <div className="form-group">
-              <label>Username</label>
-              <input
-                type="text"
-                {...register('username')}
-                className={`form-control ${
-                  errors.username ? 'is-invalid' : ''
-                }`}
-              />
-              <div className="invalid-feedback">{`${errors.username?.message}`}</div>
-            </div>
-            <div className="form-group">
-              <label>Password</label>
-              <input
-                type="password"
-                {...register('password')}
-                className={`form-control ${
-                  errors.password ? 'is-invalid' : ''
-                }`}
-              />
-              <div className="invalid-feedback">{`${errors.password?.message}`}</div>
-            </div>
-            <button
-              disabled={formState.isSubmitting}
-              className="btn btn-primary"
-            >
-              {formState.isSubmitting && (
-                <span className="spinner-border spinner-border-sm mr-1"></span>
-              )}
-              Register
-            </button>
-            <Link href="/account/login">Cancel</Link>
-          </form>
+          </div>
         </div>
       </div>
     </Layout>
