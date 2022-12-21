@@ -25,3 +25,8 @@ export interface RxjsAlert {
   type: string
   message: string
 }
+
+export interface ApiError {
+  name: string
+  message: string
+}

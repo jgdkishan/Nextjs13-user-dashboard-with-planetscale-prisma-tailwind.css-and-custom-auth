@@ -56,7 +56,7 @@ function getById(id: Number) {
 }
 
 function update(id: Number, params: Object) {
-  return fetchWrapper.put(`${baseUrl}/${id}`, params).then((x) => {
+  return fetchWrapper.put(`${baseUrl}/${id}`, params).then((res) => {
     // update stored user if the logged in user updated their own record
     if (id === userSubject.value.id) {
       // update local storage
@@ -66,7 +66,7 @@ function update(id: Number, params: Object) {
       // publish updated user to subscribers
       userSubject.next(user)
     }
-    return x
+    return res
   })
 }
 
