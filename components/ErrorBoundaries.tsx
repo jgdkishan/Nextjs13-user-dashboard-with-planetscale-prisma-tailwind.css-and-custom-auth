@@ -29,7 +29,7 @@ class ErrorBoundary extends Component<Props, State> {
               We&apos;re unable to render your page at the moment :( Please
               reach out to us over customer support for assistance
             </p>
-            <a href={process.env.NEXT_PUBLIC_APP_URL}>Back to homepage</a>
+            <a href={'/'}>Back to homepage</a>
           </div>
         </div>
       )

@@ -20,9 +20,9 @@ model user_accounts {
 }
 
 model user_info {
-  user_id       Int       @id @default(autoincrement())
-  f_name        String    @db.VarChar(25)
-  l_name        String    @db.VarChar(25)
+  id            Int       @id @default(autoincrement())
+  user_id       Int       @unique(map: "user_id_UNIQUE")
+  name          String    @db.VarChar(45)
   gender        String?   @db.VarChar(6)
   address       String?   @db.VarChar(100)
   city          String?   @db.VarChar(15)
@@ -32,4 +32,6 @@ model user_info {
   date_of_birth DateTime? @db.Date
   created_at    DateTime? @default(now()) @db.Timestamp(0)
   updated_at    DateTime? @default(now()) @db.Timestamp(0)
+
+  @@index([user_id], map: "user_id_idx")
 }
