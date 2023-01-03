@@ -1,18 +1,15 @@
+/**
+ * !! These are methods for basic testing of auth with raw data
+ */
+
 const fs = require('fs');
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()
 
 // users in JSON file for simplicity, store in a db for production applications
 let users = require('./data/users.json');
 
-export const usersRepo = {
-    getAll: () => users,
-    getById: id => users.find(x => x.id.toString() === id.toString()),
-    find: x => users.find(x),
-    create,
-    update,
-    delete: _delete
-};
-
-function create(user) {
+const create = async (user) => {
     // generate new user id
     user.id = users.length ? Math.max(...users.map(x => x.id)) + 1 : 1;
 
@@ -46,7 +43,27 @@ function _delete(id) {
 
 // private helper functions
 
-function saveData() {
+const saveData = async () => {
     console.info(JSON.stringify(users, null, 4))
-    // fs.writeFileSync('./data/users.json', JSON.stringify(users, null, 4));
+    await prisma.user.create({
+        data: {
+          name: 'Alice',
+          email: 'alice@prisma.io',
+          posts: {
+            create: { title: 'Hello World' },
+          },
+          profile: {
+            create: { bio: 'I like turtles' },
+          },
+        },
+      })
 }
+
+export const usersRepo = {
+  getAll: () => users,
+  getById: id => users.find(x => x.id.toString() === id.toString()),
+  find: x => users.find(x),
+  create,
+  update,
+  delete: _delete
+};

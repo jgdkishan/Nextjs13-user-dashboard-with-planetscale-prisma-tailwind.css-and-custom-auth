@@ -1,5 +1,5 @@
-const jwt = require('jsonwebtoken')
-const bcrypt = require('bcryptjs')
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
 import getConfig from 'next/config'
 import { Request, Response } from 'express'
 
