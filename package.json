@@ -9,12 +9,14 @@
     "lint": "next lint --fix",
     "prettier": "prettier --config \".prettierrc\"  \"./**/*.tsx\" --write"
   },
+  "author": "Kishan Chimminiyan <jgdkishan>",
   "dependencies": {
     "@hookform/resolvers": "^2.9.10",
     "@prisma/client": "^4.8.0",
     "bcryptjs": "^2.4.3",
     "express-jwt": "^7.7.7",
     "next": "13.0.7",
+    "next-auth": "^4.18.7",
     "react-hook-form": "7.41.0",
     "rxjs": "7.8.0",
     "yup": "^0.32.11"
