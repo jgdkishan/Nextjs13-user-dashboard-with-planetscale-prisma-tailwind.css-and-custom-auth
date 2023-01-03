@@ -9,33 +9,161 @@ datasource db {
   relationMode      = "prisma"
 }
 
-model account {
-  id             Int       @id @default(autoincrement())
-  email          String    @unique(map: "user_name") @db.VarChar(50)
-  password       String    @db.VarChar(255)
-  series_id      String?   @db.VarChar(60)
-  remember_token String?   @db.VarChar(255)
-  expires        DateTime? @db.DateTime(0)
-  user_type      String    @db.VarChar(10)
-  created_at     DateTime? @default(now()) @db.Timestamp(0)
-  updated_at     DateTime? @default(now()) @db.Timestamp(0)
-  user_info      user_info?
+model admin_accounts {
+  id             Int                    @id @default(autoincrement())
+  name           String?                @default("NAMELESS") @db.VarChar(45)
+  email          String                 @unique(map: "email") @db.VarChar(50)
+  password       String                 @db.VarChar(255)
+  series_id      String?                @db.VarChar(60)
+  remember_token String?                @db.VarChar(255)
+  expires        DateTime?              @db.DateTime(0)
+  user_type      String                 @db.VarChar(15)
+  gender         admin_accounts_gender?
+  manager        Int?
+  added_by       Int?
+  created_at     DateTime?              @default(now()) @db.Timestamp(0)
 }
 
-model user_info {
-  id            Int       @id @default(autoincrement())
-  account       account   @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  user_id       Int       @unique
-  name          String    @db.VarChar(45)
-  gender        String?   @db.VarChar(6)
-  address       String?   @db.VarChar(100)
-  city          String?   @db.VarChar(15)
-  state         String?   @db.VarChar(30)
-  phone         String?   @db.VarChar(15)
-  email         String?   @db.VarChar(50)
-  date_of_birth DateTime? @db.Date
-  created_at    DateTime? @default(now()) @db.Timestamp(0)
-  updated_at    DateTime? @default(now()) @db.Timestamp(0)
+model artist_skills {
+  id      Int    @id @default(autoincrement())
+  user_id Int
+  skill   String @db.VarChar(45)
 
-  @@index([user_id])
+  @@unique([user_id, skill], map: "unique")
+}
+
+model customers {
+  id            Int           @id @default(autoincrement())
+  account       user_accounts @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user_id       Int           @unique
+  name          String        @db.VarChar(45)
+  gender        String?       @db.VarChar(6)
+  address       String?       @db.VarChar(100)
+  city          String?       @db.VarChar(15)
+  state         String?       @db.VarChar(30)
+  phone         String?       @db.VarChar(15)
+  email         String        @unique(map: "unique_email") @db.VarChar(75)
+  date_of_birth DateTime?     @db.Date
+  created_at    DateTime?     @db.Timestamp(0)
+  updated_at    DateTime?     @db.Timestamp(0)
+}
+
+model lyrics {
+  id         Int            @id @default(autoincrement())
+  order_id   Int
+  lyricist   Int
+  version    Int            @default(1)
+  lyrics     String         @db.Text
+  length     String?        @db.VarChar(10)
+  status     lyrics_status? @default(SUBMITTED)
+  updated_by Int?
+  comments   String?        @db.Text
+  created_at DateTime?      @default(now()) @db.Timestamp(0)
+
+  @@unique([order_id, version], map: "order")
+  @@index([lyricist], map: "lyricist")
+}
+
+model orders {
+  id                Int            @id @default(autoincrement())
+  customer_id       Int
+  created_at        DateTime?      @default(now()) @db.Timestamp(0)
+  status            orders_status? @default(NEW)
+  requirements      String?        @db.Text
+  language          String?        @db.VarChar(45)
+  gender_preference String?        @db.VarChar(25)
+  song_manager      Int?           @default(0)
+  lyricist          Int?           @default(0)
+  lyrics_due        DateTime?      @db.Date
+  composer          Int?           @default(0)
+  comp_due          DateTime?      @db.Date
+  vocalist          Int?           @default(0)
+  vocal_due         DateTime?      @db.Date
+  beat              Int?           @default(0)
+  beat_due          DateTime?      @db.Date
+  mixer             Int?           @default(0)
+  mix_due           DateTime?      @db.Date
+  rating            String?        @db.VarChar(5)
+  lyrics_rating     String?        @db.VarChar(5)
+  music_rating      String?        @db.VarChar(5)
+  delivery_date     DateTime?      @db.DateTime(0)
+
+  @@index([vocalist], map: "artist")
+  @@index([composer], map: "composer")
+  @@index([customer_id], map: "customer")
+  @@index([lyricist], map: "lyricist")
+  @@index([song_manager], map: "manager")
+}
+
+model production_track {
+  id         Int                      @id @default(autoincrement())
+  order_id   Int
+  artist     Int
+  type       production_track_type
+  version    Int                      @default(1)
+  file_url   String                   @db.VarChar(2000)
+  length     String?                  @db.VarChar(10)
+  status     production_track_status? @default(SUBMITTED)
+  updated_by Int?
+  comments   String?                  @db.Text
+  downloads  Int?                     @default(0)
+  token      String?                  @db.VarChar(255)
+  created_at DateTime?                @default(now()) @db.Timestamp(0)
+
+  @@index([artist], map: "artist")
+  @@index([order_id, type, version], map: "order")
+}
+
+model user_accounts {
+  id             Int        @id @default(autoincrement())
+  email          String     @unique(map: "email") @db.VarChar(50)
+  password       String     @db.VarChar(255)
+  series_id      String?    @db.VarChar(60)
+  remember_token String?    @db.VarChar(255)
+  expires        DateTime?  @db.DateTime(0)
+  user_type      String     @db.VarChar(10)
+  created_at     DateTime?  @default(now()) @db.Timestamp(0)
+  updated_at     DateTime?  @default(now()) @db.Timestamp(0)
+  user_info      customers?
+}
+
+model wix_inbound {
+  id         Int       @id @default(autoincrement()) @map("_id")
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  data       String?   @db.Text
+  processed  Int?      @default(0) @db.TinyInt
+}
+
+enum orders_status {
+  NEW
+  IN_PRODUCTION
+  READY
+  DELIVERED
+  REJECTED
+}
+
+enum production_track_type {
+  COMPOSITION
+  BEAT
+  VOCAL
+  MIXING
+  FINAL
+}
+
+enum lyrics_status {
+  SUBMITTED
+  APPROVED
+  REJECTED
+}
+
+enum production_track_status {
+  SUBMITTED
+  APPROVED
+  REJECTED
+}
+
+enum admin_accounts_gender {
+  MALE
+  FEMALE
+  OTHER
 }
