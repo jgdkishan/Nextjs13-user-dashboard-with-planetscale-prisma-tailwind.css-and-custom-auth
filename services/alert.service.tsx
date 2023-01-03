@@ -1,6 +1,6 @@
 import { Subject } from 'rxjs'
 // import { filter } from 'rxjs/operators'
-import { RxjsAlert } from '../types'
+import type { RxjsAlert } from '../types'
 
 export const alertService = {
   //   onAlert,

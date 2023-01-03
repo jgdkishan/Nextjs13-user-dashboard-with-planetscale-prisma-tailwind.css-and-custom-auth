@@ -3,7 +3,7 @@ import getConfig from 'next/config'
 import Router from 'next/router'
 
 import { fetchWrapper } from '../helpers/fetchWrapper'
-import { SignUpData } from '../types'
+import type { SignUpData } from '../types'
 const { publicRuntimeConfig } = getConfig()
 const baseUrl = `${publicRuntimeConfig.apiUrl}/users`
 const userSubject = new BehaviorSubject(
