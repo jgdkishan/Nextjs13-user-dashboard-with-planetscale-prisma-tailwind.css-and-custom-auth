@@ -1,7 +1,6 @@
-import { ApiError } from '../../types'
-import { Response } from 'express'
+import type { NextApiResponse } from 'next'
 
-export const errorHandler = (err: any, res: Response) => {
+export const errorHandler = (err: any, res: NextApiResponse) => {
   if (typeof err === 'string') {
     // custom application error
     const is404 = err.toLowerCase().endsWith('not found')

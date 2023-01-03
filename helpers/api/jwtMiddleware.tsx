@@ -1,11 +1,11 @@
 const { expressjwt: jwt } = require('express-jwt')
 const util = require('util')
-import { Request, Response } from 'express'
+import type { NextApiRequest, NextApiResponse } from 'next'
 import getConfig from 'next/config'
 
 const { serverRuntimeConfig } = getConfig()
 
-export const jwtMiddleware = (req: Request, res: Response) => {
+export const jwtMiddleware = (req: NextApiRequest, res: NextApiResponse) => {
   const middleware = jwt({
     secret: serverRuntimeConfig.secret,
     algorithms: ['HS256']

@@ -1,14 +1,14 @@
-import jwt from 'jsonwebtoken';
-import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken'
+import bcrypt from 'bcryptjs'
 import getConfig from 'next/config'
-import { Request, Response } from 'express'
+import type { NextApiRequest, NextApiResponse } from 'next'
 
 import { apiHandler } from '../../../helpers/api/apiHandler'
 import { usersRepo } from '../../../helpers/api/usersRepo'
 
 const { serverRuntimeConfig } = getConfig()
 
-const authenticate = (req: Request, res: Response) => {
+const authenticate = (req: NextApiRequest, res: NextApiResponse) => {
   const { email, password } = req.body
   const user = usersRepo.find((u: any) => u.email === email)
 

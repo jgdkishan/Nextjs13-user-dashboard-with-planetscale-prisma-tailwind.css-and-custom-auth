@@ -1,11 +1,11 @@
-import bcrypt from 'bcryptjs';
+import bcrypt from 'bcryptjs'
 import { apiHandler } from '../../../helpers/api/apiHandler'
 import { usersRepo } from '../../../helpers/api/usersRepo'
-import { Request, Response } from 'express'
+import type { NextApiRequest, NextApiResponse } from 'next'
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
-const register = async (req: Request, res: Response) => {
+const register = async (req: NextApiRequest, res: NextApiResponse) => {
   // split out password from user details
   const { password, ...user } = req.body
 
@@ -27,7 +27,7 @@ const register = async (req: Request, res: Response) => {
         }
       }
     })
-    console.info("Account registered successfully", register);
+    console.info('Account registered successfully', register)
   } catch (error) {
     throw `DB error: Unable to create user with "${user.email}"`
   }

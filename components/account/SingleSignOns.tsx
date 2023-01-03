@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import {signIn} from 'next-auth/react'
+import { signIn } from 'next-auth/react'
 
 const SingleSignOns = () => {
   return (

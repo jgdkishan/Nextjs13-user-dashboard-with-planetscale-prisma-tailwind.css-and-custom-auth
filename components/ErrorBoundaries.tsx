@@ -1,6 +1,6 @@
 import { Component, ErrorInfo } from 'react'
 import styles from '../styles/Error.module.css'
-import { Props, State } from '../types'
+import type { Props, State } from '../types'
 
 class ErrorBoundary extends Component<Props, State> {
   public state: State = {
