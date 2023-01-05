@@ -17,9 +17,9 @@ const Layout = ({ children }: { children: ReactNode }) => {
     <>
       {/* <Navbar transparent /> */}
       <main>
-        <section className="relative w-full h-full py-40 min-h-screen bg-blueGray-800">
+        <section className="relative w-full h-full py-40 min-h-screen bg-slate-800">
           <div
-            className="absolute top-0 w-full h-full bg-no-repeat bg-full"
+            className="absolute top-0 w-full h-full bg-no-repeat bg-contain"
             style={{
               backgroundImage: 'url("/img/account_bg_2.png")',
               filter: 'invert(40%)'
