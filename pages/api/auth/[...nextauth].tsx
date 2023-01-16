@@ -45,7 +45,14 @@ export const authOptions: NextAuthOptions = {
     async jwt({ token }) {
       token.userRole = 'admin'
       return token
+    },
+    async session({ session, token, user }) {
+
+      session.user.type = "Session User"
+      
+      return session
     }
+    
   }
 }
 
