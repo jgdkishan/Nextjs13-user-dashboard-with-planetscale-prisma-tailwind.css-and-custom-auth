@@ -38,6 +38,10 @@ export const authOptions: NextAuthOptions = {
       issuer: process.env.AUTH0_ISSUER || ''
     })
   ],
+  pages: {
+    signIn: '/signin',
+    newUser: '/dashboard/welcome'
+  },
   theme: {
     colorScheme: 'light'
   },
@@ -47,12 +51,9 @@ export const authOptions: NextAuthOptions = {
       return token
     },
     async session({ session, token, user }) {
-
-      session.user.type = "Session User"
-      
+      session.user.type = 'Session User'
       return session
     }
-    
   }
 }
 

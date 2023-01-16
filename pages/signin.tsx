@@ -3,8 +3,8 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 
 import NextLink from 'next/link'
-import Layout from '../../components/layouts/Auth'
-import SingleSignOns from '../../components/account/SingleSignOns'
+import Layout from '../components/layouts/Auth'
+import SingleSignOns from '../components/account/SingleSignOns'
 
 const Login = () => {
   const router = useRouter()
@@ -15,7 +15,7 @@ const Login = () => {
       console.log('No JWT')
       console.log(status)
     } else if (status === 'authenticated') {
-      void router.push('/account/dashboard')
+      void router.push('/dashboard')
     }
   }, [router, status])
 
