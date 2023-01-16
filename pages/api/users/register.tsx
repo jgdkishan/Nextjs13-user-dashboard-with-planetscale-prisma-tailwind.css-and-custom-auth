@@ -38,8 +38,6 @@ const register = async (req: NextApiRequest, res: NextApiResponse) => {
 const invalid = () => null
 
 export default apiHandler({
-  get: invalid,
-  put: invalid,
-  delete: invalid,
-  post: register
+  api: register,
+  method: 'post'
 })

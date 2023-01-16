@@ -31,11 +31,7 @@ const authenticate = (req: NextApiRequest, res: NextApiResponse) => {
   })
 }
 
-const invalid = () => null
-
 export default apiHandler({
-  get: invalid,
-  put: invalid,
-  delete: invalid,
-  post: authenticate
+  api: authenticate,
+  method: 'post'
 })

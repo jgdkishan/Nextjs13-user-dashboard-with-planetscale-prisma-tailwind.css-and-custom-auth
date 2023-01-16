@@ -1,5 +1,10 @@
 import { ReactNode } from 'react'
 
+export type APIMethods = 'get' | 'put' | 'delete' | 'post'
+export interface APIHander {
+  api: Function
+  method: APIMethods
+}
 export interface Props {
   children?: ReactNode
 }
