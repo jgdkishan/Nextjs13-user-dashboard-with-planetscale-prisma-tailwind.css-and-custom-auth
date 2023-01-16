@@ -17,7 +17,7 @@ const Login = () => {
     } else if (status === 'authenticated') {
       void router.push('/account/dashboard')
     }
-  }, [status])
+  }, [router, status])
 
   return (
     <Layout>

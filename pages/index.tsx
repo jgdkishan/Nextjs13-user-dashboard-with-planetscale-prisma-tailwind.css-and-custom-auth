@@ -1,4 +1,5 @@
 import LandingPage from '../components/layouts/LandingPage'
+import Image from 'next/image'
 
 const IndexPage = () => (
   <LandingPage title="Home | Next.js + TypeScript Example">
@@ -130,25 +131,24 @@ const Services = () => (
             Working with us is a pleasure
           </h3>
           <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-gray-700">
-            Don't let your uses guess by attaching tooltips and popoves to any
-            element. Just make sure you enable them first via JavaScript.
+            Don&apos;t let your uses guess by attaching tooltips and popoves to
+            any element. Just make sure you enable them first via JavaScript.
           </p>
           <p className="text-lg font-light leading-relaxed mt-0 mb-4 text-gray-700">
             The kit comes with three pre-built pages to help you get started
-            faster. You can change the text and images and you're good to go.
-            Just make sure you enable them first via JavaScript.
+            faster. You can change the text and images and you&apos;re good to
+            go. Just make sure you enable them first via JavaScript.
           </p>
-          <a
-            href=""
-            className="font-bold text-gray-800 mt-8"
-          >
+          <a href="" className="font-bold text-gray-800 mt-8">
             Check Tailwind Starter Kit!
           </a>
         </div>
 
         <div className="w-full md:w-4/12 px-4 mr-auto ml-auto">
           <div className="relative flex flex-col min-w-0 break-words  w-full mb-6 shadow-lg rounded-lg bg-pink-600">
-            <img
+            <Image
+              width={500}
+              height={500}
               alt="..."
               src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80"
               className="w-full align-middle rounded-t-lg"
@@ -210,7 +210,9 @@ const Featured = () => (
     <div className="container mx-auto px-4">
       <div className="items-center flex flex-wrap">
         <div className="w-full md:w-4/12 ml-auto mr-auto px-4">
-          <img
+          <Image
+            width={500}
+            height={500}
             alt="..."
             className="max-w-full rounded-lg shadow-lg"
             src="https://images.unsplash.com/photo-1555212697-194d092e3b8f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
@@ -224,8 +226,8 @@ const Featured = () => (
             <h3 className="text-3xl font-semibold">A growing company</h3>
             <p className="mt-4 text-lg leading-relaxed text-gray-600">
               The extension comes with three pre-built pages to help you get
-              started faster. You can change the text and images and you're good
-              to go.
+              started faster. You can change the text and images and you&apos;re
+              good to go.
             </p>
             <ul className="list-none mt-6">
               <li className="py-2">
@@ -290,7 +292,9 @@ const Team = () => (
       <div className="flex flex-wrap">
         <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
           <div className="px-6">
-            <img
+            <Image
+              width={500}
+              height={500}
               alt="..."
               src="/img/team-1-800x800.jpg"
               className="shadow-lg rounded-full max-w-full mx-auto"
@@ -326,7 +330,9 @@ const Team = () => (
         </div>
         <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
           <div className="px-6">
-            <img
+            <Image
+              width={500}
+              height={500}
               alt="..."
               src="/img/team-2-800x800.jpg"
               className="shadow-lg rounded-full max-w-full mx-auto"
@@ -356,7 +362,9 @@ const Team = () => (
         </div>
         <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
           <div className="px-6">
-            <img
+            <Image
+              width={500}
+              height={500}
               alt="..."
               src="/img/team-3-800x800.jpg"
               className="shadow-lg rounded-full max-w-full mx-auto"
@@ -392,7 +400,9 @@ const Team = () => (
         </div>
         <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
           <div className="px-6">
-            <img
+            <Image
+              width={500}
+              height={500}
               alt="..."
               src="/img/team-4-470x470.png"
               className="shadow-lg rounded-full max-w-full mx-auto"
@@ -480,7 +490,7 @@ const Finisher = () => (
           </h6>
           <p className="mt-2 mb-4 text-gray-500">
             Some quick example text to build on the card title and make up the
-            bulk of the card's content.
+            bulk of the card&apos;s content.
           </p>
         </div>
         <div className="w-full lg:w-3/12 px-4 text-center">
@@ -492,7 +502,7 @@ const Finisher = () => (
           </h5>
           <p className="mt-2 mb-4 text-gray-500">
             Some quick example text to build on the card title and make up the
-            bulk of the card's content.
+            bulk of the card&apos;s content.
           </p>
         </div>
         <div className="w-full lg:w-3/12 px-4 text-center">
@@ -502,7 +512,7 @@ const Finisher = () => (
           <h5 className="text-xl mt-5 font-semibold text-white">Launch time</h5>
           <p className="mt-2 mb-4 text-gray-500">
             Some quick example text to build on the card title and make up the
-            bulk of the card's content.
+            bulk of the card&apos;s content.
           </p>
         </div>
       </div>

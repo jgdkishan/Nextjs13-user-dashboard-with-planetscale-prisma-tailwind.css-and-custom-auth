@@ -3,14 +3,9 @@ import Head from 'next/head'
 import Navbar from './Navbar'
 import Footer from './Footer'
 
-interface Props {
-  title?: string
-  transparent?: boolean
-}
-
 const LandingPage = ({
   title,
-  children,
+  children
 }: {
   title?: string
   children: ReactNode
